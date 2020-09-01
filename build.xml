@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Lab03mspi" default="build">
+    <!-- names of directories -->
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="classes" location="${build}/classes"/>
+    <!-- targets -->
+    <target name="compile">
+        <mkdir dir="${classes}"/>
+        <javac srcdir="${src}" destdir="${classes}" includeantruntime="false"/>
+    </target>
+    <target name="clean">
+        <delete dir="${classes}"/>
+    </target>
+    <target name="build" depends="compile">
+        <buildnumber/>
+        <jar destfile="${build}/${ant.project.name}-v.${build.number}.jar" basedir="${classes}" excludes="Test*.class">
+            <manifest>
+                <attribute name="Main-Class" value="${ant.project.name}"/>
+                <attribute name="Version" value="${build.number}"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="report">
+    </target>
+    <!--
+    <target name="test" depends="compile">
+        <junit>
+            <classpath>
+                <pathelement location="${classes}"/>
+            </classpath>
+            <test name="TestHello"/>
+        </junit>
+    </target>
+    -->
+</project>
