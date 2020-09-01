@@ -22,6 +22,10 @@
         </jar>
     </target>
     <target name="report">
+        <exec executable="git">
+            <arg value="add"/>
+            <arg value="*"/>
+        </exec>
     </target>
     <!--
     <target name="test" depends="compile">
