@@ -28,6 +28,9 @@
             <arg value="&quot;ant deal with commit&quot;"/>
         </exec>
     </target>
+        <target name="run" depends="compile">
+        <java classname="${ant.project.name}" classpath="${classes}"/>
+    </target>
     <!--
     <target name="test" depends="compile">
         <junit>
