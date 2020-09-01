@@ -23,8 +23,8 @@
     </target>
     <target name="report">
         <exec executable="git">
-            <arg value="add"/>
-            <arg value="*"/>
+            <arg value="-am"/>
+            <arg value="&quot;ant deal with commit&quot;"/>
         </exec>
     </target>
     <!--
