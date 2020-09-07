@@ -7,7 +7,7 @@
     <!-- targets -->
     <target name="compile">
         <mkdir dir="${classes}"/>
-        <javac srcdir="${src}" destdir="${classes}" includeantruntime="false"/>
+        <javac classpath="lib/junit-4.12.jar" srcdir="${src}" destdir="${classes}" includeantruntime="false"/>
     </target>
     <target name="clean">
         <delete dir="${classes}"/>
@@ -35,14 +35,23 @@
         <target name="run" depends="compile">
         <java classname="${ant.project.name}" classpath="${classes}"/>
     </target>
-    <!--
+   <target name="xml">
+     <xmlvalidate lenient="true">
+        <fileset dir="${basedir}" includes="**/*.xml"/>
+        <!--
+        <attribute name="http://xml.org/sax/features/validation" value="true"/>
+        <attribute name="http://apache.org/xml/features/validation/schema"  value="true"/>
+        <attribute name="http://xml.org/sax/features/namespaces" value="true"/>
+        -->
+     </xmlvalidate>
+   </target>
     <target name="test" depends="compile">
-        <junit>
+        <junit printsummary="yes" fork="yes">
             <classpath>
                 <pathelement location="${classes}"/>
             </classpath>
-            <test name="TestHello"/>
+            <formatter type="xml"/>
+            <test name="ShootingCheckTest"/>
         </junit>
     </target>
-    -->
 </project>
