@@ -1,10 +1,12 @@
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class ShootingCheckTest {
   @Test
   public void checkDotTest() {
     boolean shotResult = ShootingCheck.checkDot(0, 0, 5);
-    assertEquals(true, shotResult);
+    Assert.assertTrue(shotResult);
   }
 }
