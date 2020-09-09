@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.*;
 
 public class WorkWithClient {
     private final Scanner keyboard;
@@ -29,8 +30,12 @@ public class WorkWithClient {
                        exitFlag = Exit.changeExitFlag(exitFlag);
                        break;
                    default:
-                       System.out.println("Такой команды нет, попробуйте еще раз.");
-                       System.out.println(clientInput);
+                        if (clientInput.matches("^shot\\s*([-]?\\d+(\\.\\d+)*,){2}(\\d+(\\.\\d+)*){1}\\s*$")) {
+                            System.out.println("регулярка работает");
+                        } else {
+                            System.out.println("Такой команды нет, попробуйте еще раз.");
+                            System.out.println(clientInput);
+                        }
                }
            } while (exitFlag);
         }
