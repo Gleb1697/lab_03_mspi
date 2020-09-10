@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Lab03mspi" default="run">
-    <!-- names of directories -->
-    <property name="src" location="src"/>
-    <property name="build" location="build"/>
-    <property name="classes" location="${build}/classes"/>
+    <!-- properties -->
+    <property file="build.properties"/>
     <!-- targets -->
     <target name="compile">
-        <mkdir dir="${classes}"/>
-        <javac classpath="lib/junit-4.12.jar" srcdir="${src}" destdir="${classes}" includeantruntime="false"/>
+        <mkdir dir="${classesdir}"/>
+        <javac classpath="${junit}" srcdir="${srcdir}" destdir="${classesdir}" includeantruntime="false"/>
     </target>
     <target name="clean">
-        <delete dir="${classes}"/>
+        <delete dir="${classesdir}"/>
     </target>
     <target name="build" depends="compile">
         <buildnumber/>
-        <jar destfile="${build}/${ant.project.name}-v.${build.number}.jar" basedir="${classes}" excludes="Test*.class">
+        <jar destfile="${builddir}/${ant.project.name}-v.${build.number}.jar" basedir="${classesdir}" excludes="*Test.class">
             <manifest>
                 <attribute name="Main-Class" value="${ant.project.name}"/>
                 <attribute name="Version" value="${build.number}"/>
@@ -34,9 +32,9 @@
     <target name="test" depends="build">
         <junit printsummary="yes" fork="yes" haltonfailure="yes">
             <classpath>
-                <pathelement location="${classes}"/>
-                <pathelement location="lib/junit-4.12.jar"/>
-                <pathelement location="lib/hamcrest-core-1.3.jar"/>
+                <pathelement location="${classesdir}"/>
+                <pathelement location="${junit}"/>
+                <pathelement location="${hamcrest-core}"/>
             </classpath>
             <formatter type="xml"/>
             <test name="ShootingCheckTest"/>
@@ -54,6 +52,6 @@
         </exec>
     </target>
         <target name="run" depends="compile">
-        <java classname="${ant.project.name}" classpath="${classes}"/>
+        <java classname="${ant.project.name}" classpath="${classesdir}"/>
     </target>
 </project>
