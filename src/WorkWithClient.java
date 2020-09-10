@@ -20,9 +20,11 @@ public class WorkWithClient {
                    case "help":
                        Help.printHelp();
                        break;
+                   /* 
                    case "shot":
                        Shot.newShot();
                        break;
+                   */    
                    case "history":
                        History.showDots();
                        break;
@@ -30,11 +32,10 @@ public class WorkWithClient {
                        exitFlag = Exit.changeExitFlag(exitFlag);
                        break;
                    default:
-                        if (clientInput.matches("^shot\\s*([-]?\\d+(\\.\\d+)*,){2}(\\d+(\\.\\d+)*){1}\\s*$")) {
-                            System.out.println("регулярка работает");
+                        if (clientInput.matches("^shot\\s([-]?\\d+(\\.\\d+)?,\\s){2}(\\d+(\\.\\d+)?){1}$")) {
+                            Shot.newNewShot(clientInput);
                         } else {
-                            System.out.println("Такой команды нет, попробуйте еще раз.");
-                            System.out.println(clientInput);
+                            System.out.println("Ошибка в команде: " + clientInput + "\nПопробуйте еще раз.");
                         }
                }
            } while (exitFlag);
