@@ -30,19 +30,20 @@
      </xmlvalidate>
    </target>
     <target name="test" depends="build">
-        <junit printsummary="yes" fork="yes" haltonfailure="yes">
+        <junit printsummary="yes" fork="yes" haltonfailure="no">
             <classpath>
                 <pathelement location="${classesdir}"/>
                 <pathelement location="${junit}"/>
                 <pathelement location="${hamcrest-core}"/>
             </classpath>
-            <formatter type="xml"/>
-            <test name="ShootingCheckTest"/>
+            <test name="ShootingCheckTest" todir="${reportsdir}" failureproperty="test.failed" errorproperty="test.failed"/>
+            <formatter type="xml" unless="test.failed"/>
         </junit>
     </target>
-    <target name="report" depends="test">
+    <target name="report">
+        <fail message="one or more unit tests failed" if="test.failed"/>
         <junitreport todir="${reportsdir}">
-            <fileset dir=".">
+            <fileset dir="${basedir}">
                 <include name="TEST-*.xml"/>
             </fileset>
             <report format="frames" todir="${reportsdir}"/>
