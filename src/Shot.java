@@ -18,7 +18,7 @@ public class Shot {
     }
     */
 
-    public static void newNewShot(String clientInput) {
+    public static void newNewShot(String clientInput) throws Exception {
         Dot dot = new Dot();
         String stringOnlyNumbers = clientInput.replaceAll("shot\\s","");
         int i = 0;

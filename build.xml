@@ -29,8 +29,8 @@
         -->
      </xmlvalidate>
    </target>
-    <target name="test" depends="build">
-        <junit printsummary="yes" fork="yes" haltonfailure="no">
+    <target name="test" depends="build" >
+        <junit printsummary="yes" fork="yes" haltonfailure="no" failureproperty="test.failed" errorproperty="test.failed">
             <classpath>
                 <pathelement location="${classesdir}"/>
                 <pathelement location="${junit}"/>

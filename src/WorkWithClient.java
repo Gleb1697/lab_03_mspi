@@ -33,7 +33,12 @@ public class WorkWithClient {
                        break;
                    default:
                         if (clientInput.matches("^shot\\s([-]?\\d+(\\.\\d+)?,\\s){2}(\\d+(\\.\\d+)?){1}$")) {
-                            Shot.newNewShot(clientInput);
+                            try {
+                                Shot.newNewShot(clientInput);
+                            }
+                            catch (Exception e) {
+                                System.out.println("Ошибка, попробуйте еще раз");
+                            }
                         } else {
                             System.out.println("Ошибка в команде: " + clientInput + "\nПопробуйте еще раз.");
                         }
