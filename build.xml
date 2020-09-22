@@ -58,7 +58,7 @@
             <arg value="&quot;ant deal with commit of reports&quot;"/>
         </exec>
     </target>
-        <target name="run" depends="compile">
+    <target name="run" depends="compile">
         <java classname="${ant.project.name}" classpath="${classesdir}"/>
     </target>
 </project>
